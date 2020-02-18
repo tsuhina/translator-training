@@ -43,7 +43,7 @@ def plot_effect_of_median_imputation(dataf, col):
     fig, (ax1, ax2) = plt.subplots(figsize=(15, 8), nrows=1, ncols=2)
 
     ax2.hist(dataf['imputed'],
-             bins=np.arange(0, 10, 0.5),
+             bins=np.linspace(int(dataf[col].min()), int(dataf[col].max()), 30),
              alpha=0.4,
              label='Median Imputation',
              density=False,
@@ -51,7 +51,7 @@ def plot_effect_of_median_imputation(dataf, col):
     ymin, ymax = ax2.get_ylim()
 
     ax1.hist(dataf[col],
-             bins=np.arange(0, 10, 0.5),
+             bins=np.linspace(int(dataf[col].min()), int(dataf[col].max()), 30),
              alpha=0.4, label='No Imputation',
              density=False,
              color='red')
@@ -60,12 +60,12 @@ def plot_effect_of_median_imputation(dataf, col):
     ax1.axvline(dataf[col].median(),
                 ls='--',
                 color='k',
-                label='median of MashThickness')
+                label=f'median of {col}')
 
     ax2.axvline(dataf[col].median(),
             ls='--',
             color='k',
-            label='median of MashThickness')
+            label=f'median of {col}')
 
     ax1.legend()
     ax2.legend()
